@@ -13,8 +13,6 @@
 
     <groupId>com.leo.spring.cloud</groupId>
     <artifactId>config-client</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>config-client</name>
     <description>Demo project for Spring Boot</description>
 
 
@@ -28,10 +26,12 @@
 
 
     <dependencies>
+        <!-- 管理（监控，安全等） -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <!--  web（servlet） -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
