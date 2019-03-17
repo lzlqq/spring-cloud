@@ -1,10 +1,12 @@
 package com.leo.spring.cloud;
 
+import com.leo.spring.cloud.health.MyHealthIndicator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.bootstrap.config.PropertySourceLocator;
 import org.springframework.cloud.context.refresh.ContextRefresher;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -20,7 +22,7 @@ import java.util.Set;
 @SpringBootApplication
 public class ConfigClientApplication {
     // 自动更新服务端配置信息实现：
-    // -->
+    // --> 这种方式适合：开关、阈值、文档等，不适合复杂配置变更
     // 1.查看 refresh 接口 得知GenericPostableMvcEndpoint 依赖ContextRefresher和Environment
     // 2.查看beans接口得到以上两个依赖的Bean实例，通过构造器注入实现
     private final ContextRefresher contextRefresher;
@@ -69,4 +71,10 @@ public class ConfigClientApplication {
             return propertySource;
         }
     }
+
+    @Bean
+    public MyHealthIndicator myHealthIndicator(){
+        return new MyHealthIndicator();
+    }
+
 }
