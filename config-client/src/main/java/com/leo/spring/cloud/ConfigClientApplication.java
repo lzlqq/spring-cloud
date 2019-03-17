@@ -16,10 +16,10 @@ import java.util.Map;
 @SpringBootApplication
 public class ConfigClientApplication {
     public static void main(String[] args) {
-        SpringApplication springApplication=new SpringApplication(ConfigClientApplication.class);
+        //SpringApplication springApplication=new SpringApplication(ConfigClientApplication.class);
         //springApplication.setWebEnvironment(true);
-        springApplication.run(args);
-       // SpringApplication.run(ConfigClientApplication.class,args);
+        //springApplication.run(args);
+       SpringApplication.run(ConfigClientApplication.class,args);
     }
 
     @Configuration
@@ -29,7 +29,7 @@ public class ConfigClientApplication {
         @Override
         public PropertySource<?> locate(Environment environment) {
             Map<String,Object> source =new HashMap<>();
-            source.put("server.port","9090");
+            //source.put("server.port","9090");
             MapPropertySource propertySource = new MapPropertySource("my-property-source",source);
             return propertySource;
         }
