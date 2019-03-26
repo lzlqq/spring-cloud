@@ -25,6 +25,7 @@ public class PersonClientController {
 
     @GetMapping(value = "/person/find/all")
     public Collection<Person> findAll() {
+
         return personService.findAll();
     }
 }
