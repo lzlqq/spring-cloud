@@ -15,9 +15,9 @@ public class KafkaProducerController {
     private final String topic;
 
     @Autowired
-
     public KafkaProducerController(KafkaTemplate<String, String> kafkaTemplate,
-                                   MessageProducerBean messageProducerBean, @Value("${kafka.topic}") String topic) {
+                                   MessageProducerBean messageProducerBean,
+                                   @Value("${kafka.topic}") String topic) {
         this.kafkaTemplate = kafkaTemplate;
         this.messageProducerBean = messageProducerBean;
         this.topic = topic;

@@ -14,15 +14,16 @@ import org.springframework.stereotype.Component;
 public class MessageProducerBean {
 
     @Autowired
-    @Qualifier(value = Source.OUTPUT)// Bean 名称
+    @Qualifier(Source.OUTPUT)// Bean 名称
     private MessageChannel messageChannel;
 
     /**
      * 发送消息
+     *
      * @param message
      */
-    public void send(String message){
+    public void send(String message) {
         // 通过消息管道发送消息
-    messageChannel.send(MessageBuilder.withPayload(message).build());
+        messageChannel.send(MessageBuilder.withPayload(message).build());
     }
 }
