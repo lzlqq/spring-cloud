@@ -12,10 +12,17 @@ import org.springframework.stereotype.Component;
 @Component
 @EnableBinding(Source.class)
 public class MessageProducerBean {
-
+    /**
+     * 实现方式一 {@link MessageChannel}
+     */
     @Autowired
     @Qualifier(Source.OUTPUT)// Bean 名称
     private MessageChannel messageChannel;
+    /**
+     * 实现方式二 {@link Source}
+     */
+    @Autowired
+    private  Source source;
 
     /**
      * 发送消息
@@ -24,6 +31,7 @@ public class MessageProducerBean {
      */
     public void send(String message) {
         // 通过消息管道发送消息
-        messageChannel.send(MessageBuilder.withPayload(message).build());
+       // messageChannel.send(MessageBuilder.withPayload(message).build());
+        source.output().send(MessageBuilder.withPayload(message).build());
     }
 }
