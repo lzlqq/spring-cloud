@@ -46,5 +46,11 @@ public class KafkaProducerController {
         messageProducerBean.send(message);
         return true;
     }
+
+    @GetMapping("/message/send/to/leo")
+    public Boolean sendToLeo(@RequestParam String message) {
+        messageProducerBean.sendToLeo(message);
+        return true;
+    }
 }
 
