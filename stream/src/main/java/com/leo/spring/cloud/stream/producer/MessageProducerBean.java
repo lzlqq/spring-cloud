@@ -42,8 +42,8 @@ public class MessageProducerBean {
      */
     public void send(String message) {
         // 通过消息管道发送消息
-       // messageChannel.send(MessageBuilder.withPayload(message).build());
-        source.output().send(MessageBuilder.withPayload(message).build());
+       messageChannel.send(MessageBuilder.withPayload(message).build());
+      //  source.output().send(MessageBuilder.withPayload(message).build());
     }
 
     /**

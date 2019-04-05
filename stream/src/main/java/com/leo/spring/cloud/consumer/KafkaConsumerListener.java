@@ -3,7 +3,7 @@ package com.leo.spring.cloud.consumer;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class KafkaConsumerListener {
     @KafkaListener(topics = "${kafka.topic}")
     public void onMessage(String message){
