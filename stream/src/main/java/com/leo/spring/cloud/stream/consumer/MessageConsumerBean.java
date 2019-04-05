@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Sink;
+import org.springframework.integration.annotation.ServiceActivator;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.MessagingException;
@@ -29,7 +31,7 @@ public class MessageConsumerBean {
 
     /**
      * 当字段注入完成后的回调
-     *
+     * <p>
      * 暂时测试不能和{@link KafkaConsumerListener} 中的同时消费，那里优先
      */
     @PostConstruct
@@ -41,4 +43,11 @@ public class MessageConsumerBean {
             }
         });
     }
+
+    //通过@ServiceActivator
+    @ServiceActivator(inputChannel = Sink.INPUT)
+    public void onMessage(String message) {
+        System.out.println("onMessage： " + message);
+    }
+
 }
