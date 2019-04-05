@@ -3,6 +3,7 @@ package com.leo.spring.cloud.stream.consumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -39,7 +40,7 @@ public class MessageConsumerBean {
         subscribableChannel.subscribe(new MessageHandler() {
             @Override
             public void handleMessage(Message<?> message) throws MessagingException {
-                System.out.println("MessageConsumerBean: " + message.getPayload());
+                System.out.println("subscribe: " + message.getPayload());
             }
         });
     }
@@ -47,7 +48,13 @@ public class MessageConsumerBean {
     //通过@ServiceActivator
     @ServiceActivator(inputChannel = Sink.INPUT)
     public void onMessage(String message) {
-        System.out.println("onMessage： " + message);
+        System.out.println("@ServiceActivator： " + message);
+    }
+
+    //通过@StreamListener
+    @StreamListener(Sink.INPUT)
+    public void onMessage(Object message) {
+        System.out.println("@StreamListener： " + message);
     }
 
 }
